@@ -1,4 +1,4 @@
-const { getFirebaseAdmin } = require('../config/firebaseAdmin');
+const { verifyFirebaseIdToken } = require('../config/firebaseVerifier');
 const User = require('../models/User');
 
 async function requireAuth(req, res, next) {
@@ -10,7 +10,7 @@ async function requireAuth(req, res, next) {
       return res.status(401).json({ error: 'Missing authorization token.' });
     }
 
-    const decodedToken = await getFirebaseAdmin().auth().verifyIdToken(token);
+    const decodedToken = await verifyFirebaseIdToken(token);
     const email = decodedToken.email || req.body?.email;
 
     if (!email) {

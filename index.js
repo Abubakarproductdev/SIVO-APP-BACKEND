@@ -14,6 +14,14 @@ const port = process.env.PORT || process.env.API_PORT || 8080;
 app.use(cors());
 app.use(express.json({ limit: '1mb' }));
 
+app.get('/', (req, res) => {
+  res.json({
+    ok: true,
+    service: 'SIVO API',
+    health: '/health',
+  });
+});
+
 app.get('/health', (req, res) => {
   res.json({ ok: true });
 });

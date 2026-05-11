@@ -4,7 +4,7 @@ async function connectDatabase() {
   const mongoUri = process.env.MONGO_URI;
 
   if (!mongoUri) {
-    throw new Error('MONGO_URI is missing. Add it to .env before starting the API server.');
+    throw new Error('MONGO_URI is missing. Set it in Azure App Service application settings or local .env before starting the API server.');
   }
 
   mongoose.set('strictQuery', true);
